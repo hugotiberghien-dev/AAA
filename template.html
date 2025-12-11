@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dashboard de monitoring système - Challenge Triple A">
+    <title>Dashboard Monitoring - Triple A</title>
+    <link rel="stylesheet" href="template.css">
+</head>
+<body>
+    <header role="banner">
+        <h1><img src="./images/icon-dashboard.png" alt="Dashboard">
+ Dashboard de Monitoring</h1>
+        <p class="timestamp">Dernière mise à jour : {{ timestamp }}</p>
+    </header>
+
+    <main role="main">
+        <!-- Section Système -->
+        <section class="section-system" role="region" aria-labelledby="system-title">
+            <h2 id="system-title"><img src="./images/icon-info.png" alt="System Information">
+ Informations Système</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="label">Nom de la machine</span>
+                    <span class="value">{{ hostname }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Système d'exploitation</span>
+                    <span class="value">{{ os_name }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Uptime</span>
+                    <span class="value">{{ uptime }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Utilisateurs connectés</span>
+                    <span class="value">{{ user_count }}</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section CPU -->
+        <section class="section-cpu" role="region" aria-labelledby="cpu-title">
+            <h2 id="cpu-title"><img src="./images/icon-cpu.png" alt="CPU">
+ Processeur</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="label">Nombre de cœurs</span>
+                    <span class="value">{{ cpu_cores }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Fréquence</span>
+                    <span class="value">{{ cpu_freq }} MHz</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <span class="label">Utilisation CPU</span>
+                <div class="progress-bar">
+                    <div class="progress {{ cpu_color }}" style="width: {{ cpu_percent }}%;"></div>
+                </div>
+                <span class="percent">{{ cpu_percent }}%</span>
+            </div>
+        </section>
+
+        <!-- Section Mémoire -->
+        <section class="section-memory" role="region" aria-labelledby="memory-title">
+            <h2 id="memory-title"><img src="./images/icon-storage.png" alt="Memory">
+ Mémoire RAM</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="label">RAM utilisée</span>
+                    <span class="value">{{ ram_used }} GB</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">RAM totale</span>
+                    <span class="value">{{ ram_total }} GB</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <span class="label">Utilisation RAM</span>
+                <div class="progress-bar">
+                    <div class="progress {{ ram_color }}" style="width: {{ ram_percent }}%;"></div>
+                </div>
+                <span class="percent">{{ ram_percent }}%</span>
+            </div>
+        </section>
+
+        <!-- Section Disque -->
+        <section class="section-disk" role="region" aria-labelledby="disk-title">
+            <h2 id="disk-title"><img src="./images/icon-storage.png" alt="Storage">
+ Stockage</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="label">Espace utilisé</span>
+                    <span class="value">{{ disk_used }} GB</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Espace total</span>
+                    <span class="value">{{ disk_total }} GB</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <span class="label">Utilisation Disque</span>
+                <div class="progress-bar">
+                    <div class="progress {{ disk_color }}" style="width: {{ disk_percent }}%;"></div>
+                </div>
+                <span class="percent">{{ disk_percent }}%</span>
+            </div>
+        </section>
+
+        <!-- Section Réseau -->
+        <section class="section-network" role="region" aria-labelledby="network-title">
+            <h2 id="network-title"> <img src="./images/icon-network.png" alt="Network">
+Réseau</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="label">Adresse IP principale</span>
+                    <span class="value">{{ ip_address }}</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Processus -->
+        <section class="section-processes" role="region" aria-labelledby="processes-title">
+            <h2 id="processes-title"><img src="./images/icon-processes.png" alt="Processes">
+ Top 3 Processus</h2>
+            <div class="process-list" role="list" aria-label="Liste des processus les plus actifs">
+                {{ top_processes }}
+            </div>
+        </section>
+
+        <!-- Section Fichiers -->
+        <section class="section-files" role="region" aria-labelledby="files-title">
+            <h2 id="files-title"><img src="./images/icon-files.png" alt="Files">
+ Analyse de Fichiers</h2>
+            <div class="file-stats">
+                {{ file_stats }}
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <p>Dashboard généré par monitor.py - Challenge Triple A</p>
+        <p>La Plateforme - 2025</p>
+    </footer>
+</body>
+</html>
